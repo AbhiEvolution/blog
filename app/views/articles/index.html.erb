@@ -1,0 +1,8 @@
+<%= render 'pagination' %>
+
+<% @articles.each do |article| %>
+  <%= render 'article', article: article %>
+<% end %>
+
+<%= render 'pagination' %>
+

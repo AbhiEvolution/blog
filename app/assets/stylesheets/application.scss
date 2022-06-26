@@ -15,3 +15,23 @@
  */
 
 @import "bootstrap";
+body {
+    background-color: rgb(192, 190, 190);
+}
+
+.page-link {
+    color: rgb(192, 190, 190);
+}
+
+.page-link:hover {
+    color: rgb(192, 190, 190);
+}
+
+.page-link:hover {
+    color: rgb(192, 190, 190);
+}
+
+.page-item.active .page-link {
+    color: rgb(192, 190, 190);
+    background-color: black;
+}
