@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @articles = Article.page params[:page]
   end
@@ -15,6 +17,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
+      flash[:notice] = "Article updated successfully!"
       redirect_to @article
     else
       render :edit, status: :unprocessable_entity
@@ -26,9 +29,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+
+    @article =current_user.articles.new(article_params)
 
     if @article.save
+      flash[:notice] = "Article created successfully!"
       redirect_to @article
     else
       render :new, status: :unprocessable_entity
@@ -48,4 +53,9 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :description)
   end
+
+  def set_article
+    @article = Article.new(article_params)
+  end
+
 end

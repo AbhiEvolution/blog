@@ -1,4 +1,9 @@
-<div class="container mt-5 shadow-lg p-3 mb-5 bg-body rounded">  
+<div class="container mt-5 shadow-lg p-3 mb-5 bg-body rounded">
+  <% if article.errors.full_messages.any? %>
+    <% article.errors.full_messages.each do |error_message| %>
+      <%= error_message if article.errors.full_messages.first == error_message %> <br />
+    <% end %>
+  <% end %>
   <%= form_with model: @article do |form| %>
     <div>
       <%= form.label :title %><br>
@@ -6,8 +11,11 @@
     </div>
     <br />
     <div>
-      <%= form.label :body %><br>
+      <%= form.label :Description %><br>
       <%= form.text_area :description, class: 'form-control'%>
+    </div>
+    <div>
+      <%#=form.hidden_field :user_id, value: current_user.id,  class: 'form-control'%>
     </div>
     <br />
     <div>
@@ -15,4 +23,4 @@
     </div>
     <br />
   <% end %>
-</div>  
+</div>

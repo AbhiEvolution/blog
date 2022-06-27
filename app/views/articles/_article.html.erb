@@ -11,11 +11,13 @@
           <% unless params[:controller] == 'articles' && params[:action] == 'show' %>
             <%= link_to 'View', article_path(article), class:"btn btn-success" %>
           <% end %>
-          <%= link_to 'Edit', edit_article_path(article), class:"btn btn-warning" %>
-          <%= link_to 'Delete', article_path(article), class:"btn btn-danger", data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
+          <% if current_user.id == article.user.id %>
+            <%= link_to 'Edit', edit_article_path(article), class:"btn btn-warning" %>
+            <%= link_to 'Delete', article_path(article), class:"btn btn-danger", data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %>
+          <% end %>          
         </div>
         <div class="card-footer text-muted">
           <%=time_ago_in_words article.created_at %> ago

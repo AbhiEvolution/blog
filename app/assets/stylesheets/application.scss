@@ -35,3 +35,9 @@ body {
     color: rgb(192, 190, 190);
     background-color: black;
 }
+
+.navbar-dark .navbar-text a,
+.navbar-dark .navbar-text a:hover,
+.navbar-dark .navbar-text a:focus {
+    color: black;
+}
