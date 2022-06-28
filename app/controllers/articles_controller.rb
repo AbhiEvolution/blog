@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!
+
 
   def index
     @articles = Article.page params[:page]
@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def create
 
-    @article =current_user.articles.new(article_params)
+    @article =Article.new(article_params)
 
     if @article.save
       flash[:notice] = "Article created successfully!"
